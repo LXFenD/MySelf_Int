@@ -1,0 +1,410 @@
+<template>
+  <div class="bg_content">
+    <div class="content-c">
+      <div class="cont-l">
+        <div class="lll">
+          <div class="top">
+            <img src="../../assets/BLOG/content/news1.jpg" alt="">
+          </div>
+          <div class="detail-l">
+            <p class="title">Title<span class="xian xian-l"></span></p>
+            <a href="">The dollar has broken all records of positive change
+              in the world and in the galaxy</a>
+
+            <p class="ddd_de">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              sed do eiusmod tempor incididunt ut labore et dolore magna
+              aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+              ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+            <div class="ddd-bot">
+              <div class="ddd-l">Today 15:40</div>
+              <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+            </div>
+
+          </div>
+        </div>
+        <div class="lists">
+          <div class="l_l_l">
+            <div class="top_tt">
+              <div class="top top_l">
+              <img src="../../assets/BLOG/content/news2.jpg" alt="">
+            </div>
+            <div class="detail-l">
+              <p class="title">Title<span class="xian xian-l"></span>
+                <i class="paly_ss"><span class="fa fa-play"></span>
+                </i></p>
+              <a href="">The dollar has broken all records of positive change
+                in the world and in the galaxy</a>
+
+              <div class="ddd-bot">
+                <div class="ddd-l">Today 15:40</div>
+                <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+              </div>
+
+            </div>
+            </div>
+
+          </div>
+          <div class="l_l_r">
+            <div class="top_tt">
+              <div class="top top_l">
+              <img src="../../assets/BLOG/content/news3.jpg" alt="">
+            </div>
+            <div class="detail-l">
+              <p class="title">Title<span class="xian xian-l"></span>
+                <i class="paly_ss"><span class="fa fa-play"></span>
+                </i></p>
+              <a href="">The dollar has broken all records of positive change
+                in the world and in the galaxy</a>
+
+              <div class="ddd-bot">
+                <div class="ddd-l">Today 15:40</div>
+                <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+              </div>
+
+            </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="cont-r">
+          <ul class="cont-ul">
+            <li><div class="top_tt">
+              <div class="top top_l">
+              <img src="../../assets/BLOG/content/news4.jpg" alt="">
+            </div>
+            <div class="detail-l">
+              <p class="title">Title<span class="xian xian-l"></span>
+                <i class="paly_ss"><span class="fa fa-play"></span>
+                </i></p>
+              <a href="">The dollar has broken all records of positive change
+                in the world and in the galaxy</a>
+
+              <div class="ddd-bot">
+                <div class="ddd-l">Today 15:40</div>
+                <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+              </div>
+
+            </div>
+            </div></li>
+            <li><div class="top_tt">
+              <div class="top top_l">
+              <img src="../../assets/BLOG/content/news5.jpg" alt="">
+            </div>
+            <div class="detail-l">
+              <p class="title">Title<span class="xian xian-l"></span>
+                <i class="paly_ss"><span class="fa fa-play"></span>
+                </i></p>
+              <a href="">The dollar has broken all records of positive change
+                in the world and in the galaxy</a>
+
+              <div class="ddd-bot">
+                <div class="ddd-l">Today 15:40</div>
+                <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+              </div>
+
+            </div>
+            </div></li>
+            <li><div class="top_tt">
+              <div class="top top_l">
+              <img src="../../assets/BLOG/content/news6.jpg" alt="">
+            </div>
+            <div class="detail-l">
+              <p class="title">Title<span class="xian xian-l"></span>
+                <i class="paly_ss"><span class="fa fa-play"></span>
+                </i></p>
+              <a href="">The dollar has broken all records of positive change
+                in the world and in the galaxy</a>
+
+              <div class="ddd-bot">
+                <div class="ddd-l">Today 15:40</div>
+                <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+              </div>
+
+            </div>
+            </div></li>
+            <li><div class="top_tt">
+              <div class="top top_l">
+              <img src="../../assets/BLOG/content/news7.jpg" alt="">
+            </div>
+            <div class="detail-l">
+              <p class="title">Title<span class="xian xian-l"></span>
+                <i class="paly_ss"><span class="fa fa-play"></span>
+                </i></p>
+              <a href="">The dollar has broken all records of positive change
+                in the world and in the galaxy</a>
+
+              <div class="ddd-bot">
+                <div class="ddd-l">Today 15:40</div>
+                <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+              </div>
+
+            </div>
+            </div></li>
+            <li><div class="top_tt">
+              <div class="top top_l">
+              <img src="../../assets/BLOG/content/news8.jpg" alt="">
+            </div>
+            <div class="detail-l">
+              <p class="title">Title<span class="xian xian-l"></span>
+                <i class="paly_ss"><span class="fa fa-play"></span>
+                </i></p>
+              <a href="">The dollar has broken all records of positive change
+                in the world and in the galaxy</a>
+
+              <div class="ddd-bot">
+                <div class="ddd-l">Today 15:40</div>
+                <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+              </div>
+
+            </div>
+            </div></li>
+            <li><div class="top_tt">
+              <div class="top top_l">
+              <img src="../../assets/BLOG/content/news9.jpg" alt="">
+            </div>
+            <div class="detail-l">
+              <p class="title">Title<span class="xian xian-l"></span>
+                <i class="paly_ss"><span class="fa fa-play"></span>
+                </i></p>
+              <a href="">The dollar has broken all records of positive change
+                in the world and in the galaxy</a>
+
+              <div class="ddd-bot">
+                <div class="ddd-l">Today 15:40</div>
+                <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+              </div>
+
+            </div>
+            </div></li>
+          </ul>
+      </div>
+    </div>
+    <div class="load_more">
+      <span class="load">
+        <span class="fa fa-link"><span class="iii"></span>load more</span>
+      </span>
+    </div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: "BG_Content"
+  }
+</script>
+
+<style scoped>
+  .load {
+    position: relative;
+  }
+  .load_more{
+    width: 75%;
+    height: 70px;
+    margin: auto;
+    text-align: center;
+  }
+  .load_more>span{
+    width: 14%;
+    display: inline-block;
+    height: 50px;
+    background: white;
+    line-height: 50px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bg_content {
+    width: 100%;
+    margin-top: 100px;
+  }
+
+  .content-c {
+    width: 75%;
+    height: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .content-c .cont-l {
+    width: 49%;
+    float: left;
+
+  }
+
+  .lll {
+    width: 100%;
+    background: white;
+  }
+
+  .content-c .cont-l .top {
+    width: 100%;
+    height: 332px;
+
+  }
+
+  .content-c .cont-l .top img {
+    height: 100%;
+    width: 100%;
+  }
+
+  .content-c .cont-r {
+    width: 49%;
+    float: right;
+    height: 100%;
+  }
+
+  .detail-l {
+    box-sizing: border-box;
+    padding: 10px;
+
+  }
+
+  .detail-l .lll a {
+    display: block;
+    font-size: 19px;
+    margin-top: 30px;
+    font-weight: 300;
+    color: black;
+  }
+
+  .title {
+    text-transform: uppercase;
+    font-size: 20px;
+    color: sandybrown;
+    position: relative;
+  }
+
+  .xian {
+    width: 20px;
+    height: 2px;
+    background: #f9e188;
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    display: block;
+  }
+
+  .ddd_de {
+    margin-top: 20px;
+
+  }
+  .paly_ss .fa-play{
+    color: white;
+    display: block;
+    font-size: 30px;
+  }
+  .lll .ddd-bot {
+    margin-top: 100px;
+    width: 100%;
+    overflow: hidden;
+  }
+.top_tt {
+  width: 100%;
+}
+  .lll .ddd-bot .ddd-l {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  .lll .ddd-bot .ddd-r {
+    width: 50%;
+    float: right;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+
+  .lists {
+    width: 100%;
+    margin-top: 30px;
+    overflow: hidden;
+  }
+
+  .l_l_l {
+    width: 49%;
+    height: 100%;
+    background: white;
+    float: left;
+
+  }
+
+  .l_l_r {
+    width: 49%;
+    height: 100%;
+    background: white;
+    float: right;
+  }
+  .top_l{
+      height: 140px!important;
+        overflow: hidden;
+  }
+  .top_tt :hover img {
+    transform: scale(1.05);
+    transition: all .5s ease-out .1s;
+  }
+  .top_tt{
+    background: white;
+    overflow: hidden;
+  }
+
+  .detail-l .ddd-bot .ddd-l {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+    padding: 10px;
+    padding-left: 0;
+  }
+    .paly_ss{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff url("../../assets/play-1.png");
+      display: block;
+      position: absolute;
+      /*background: white;*/
+      right: 0;
+      top: -150%;
+      line-height: 55px;
+      text-align: center;
+
+    }
+    .top_tt:hover .paly_ss{
+       transform: translateX(-100px) translateY(-75px);
+      transition: all 1s;
+    }
+  .top_tt:hover .fa-play{
+  transform: rotate(360deg);
+  transition: all 1s;
+}
+  .ddd-bot .ddd-r {
+    width: 50%;
+    float: right;
+    text-align: right;
+    box-sizing: border-box;
+    padding: 10px;
+  }
+  .cont-ul{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    height: 999px;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+  .cont-ul li{
+    height: 300px;
+    flex-grow: 1;
+    flex-basis: 40%;
+    width: 50%;
+    margin: 10px;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+  }
+</style>
