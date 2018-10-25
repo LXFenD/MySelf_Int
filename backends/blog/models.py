@@ -24,7 +24,7 @@ class Blog(models.Model):
     blog_zan = models.IntegerField(default=0)
     blog_image = models.CharField(max_length=500)
     blog_cate = models.ForeignKey('Category',on_delete=models.SET_NULL,null=True)
-
+    blog_video_url = models.CharField(max_length=888,default="")
     class Meta:
         db_table = 'blog'
         ordering = ['-blog_date']

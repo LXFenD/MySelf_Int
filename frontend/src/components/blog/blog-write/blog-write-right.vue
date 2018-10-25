@@ -9,7 +9,7 @@
     <div class="detail_i">
       <div class="im">
         <span>简介图片：</span>
-        <input type="file" placeholder="请输入简介" @change="upload_img" id="blog_img" ref="blog_img">
+        <input type="file" placeholder="请输入简介" @change="load_img_aliyun" id="blog_img" ref="blog_img">
       </div>
 
       <div class="show-img">
@@ -61,6 +61,7 @@
   import {post_qinniu} from "../../../request/api";
   import {post_blog} from "../../../request/api";
   import {default as swal} from 'sweetalert2'
+  import {load_img_aliyun} from "../../../request/api";
   // var qiniu =  require('qiniu-js');
   export default {
     name: "blog-write-left"
@@ -149,6 +150,18 @@
           });
         })
       },
+      load_img_aliyun(){
+        var self = this;
+        let files = this.$refs.blog_img.files;
+        let data = new FormData();
+        data.append('file', files[0]);
+        load_img_aliyun(data).then(res => {
+          self.img_url = res.data.data.img_url;
+          $('.img_url_show a').attr('href', self.img_url).html(self.img_url);
+          $('.show-img img').attr('src', self.img_url)
+        })
+      }
+      ,
     },
 
 

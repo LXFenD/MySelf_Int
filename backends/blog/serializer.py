@@ -22,5 +22,5 @@ class BlogSerializer(ModelSerializer):
         model = Blog
         fields = ['blog_name', 'blog_detail', 'blog_content',
                   'blog_image', 'blog_date', 'blog_cate', 'id',
-                  'blog_zan', 'blog_readnum'
+                  'blog_zan', 'blog_readnum','blog_video_url'
                   ]

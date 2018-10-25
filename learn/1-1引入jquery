@@ -1,0 +1,13 @@
+##nodejs安装jquery
+
+##在vue中引入jquery：
+    在build中的 webpack.base.conf.js引入：
+    在开头引入：webpack
+        var webpack = require('webpack')
+    module:之后添加
+          plugins:[
+                new webpack.ProvidePlugin({
+                  $:'jquery',
+                  JQuery:'jquery',
+                })
+              ]

@@ -9,5 +9,9 @@ urlpatterns = [
     path('six_bg/',views.get_six_blog),
     path('save/',views.insert_blog),
     path('read_bg/',views.get_read_blog),
+    path('play_id/',views.get_play_ping),
+    path('play_info/',views.get_play_info),
+    path('save_img/',views.save_img_aliyun),
+    path('video_list/',views.get_video_list),
 
 ]
