@@ -3,23 +3,18 @@
     <div class="content-c">
       <div class="cont-l">
         <div class="lll">
-          <div class="top">
-            <img src="../../assets/BLOG/content/news1.jpg" alt="">
+          <div class="top"  >
+            <img :src="blog_sixs[0].blog_image" alt="" v-if="blog_sixs!=null">
           </div>
-          <div class="detail-l">
-            <p class="title">Title<span class="xian xian-l"></span></p>
-            <a href="">The dollar has broken all records of positive change
-              in the world and in the galaxy</a>
+          <div class="detail-l" v-if="blog_sixs!=null">
+            <p class="title">{{blog_sixs[0].blog_cate.cate_name}}<span class="xian xian-l-l"></span></p>
+            <a href="">{{blog_sixs[0].blog_name}}</a>
 
-            <p class="ddd_de">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-              sed do eiusmod tempor incididunt ut labore et dolore magna
-              aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-              ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <p class="ddd_de">{{blog_sixs[0].blog_detail}}</p>
 
             <div class="ddd-bot">
-              <div class="ddd-l">Today 15:40</div>
-              <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+              <div class="ddd-l">{{blog_sixs[0].blog_date|dates}}</div>
+              <div class="ddd-r"><span class="fa fa-eye"></span>{{blog_sixs[0].blog_readnum}}</div>
             </div>
 
           </div>
@@ -28,18 +23,18 @@
           <div class="l_l_l">
             <div class="top_tt">
               <div class="top top_l">
-                <img src="../../assets/BLOG/content/news2.jpg" alt="">
+                <img :src="blog_sixs[1].blog_image" alt="" v-if="blog_sixs!=null">
               </div>
               <div class="detail-l">
-                <p class="title">Title<span class="xian xian-l"></span>
-                  <i class="paly_ss"><span class="fa fa-play"></span>
+                <p class="title">{{blog_sixs[1].blog_cate.cate_name}}<span class="xian xian-l"></span>
+                  <i class="paly_ss" @click="paly_open"  v-if="blog_sixs[1].blog_video_url" :data-blog_video_url="blog[1].blog_video_url"><span
+                    class="fa fa-play"></span>
                   </i></p>
-                <p class="title_detail">The dollar has broken all records of positive change
-                  in the world and in the galaxy</p>
+                <p class="title_detail">{{blog_sixs[1].blog_name}}</p>
 
                 <div class="ddd-bot">
-                  <div class="ddd-l">Today 15:40</div>
-                  <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+                  <div class="ddd-l">{{blog_sixs[1].blog_date|dates}}</div>
+                  <div class="ddd-r"><span class="fa fa-eye"></span>{{blog_sixs[1].blog_readnum}}</div>
                 </div>
 
               </div>
@@ -48,19 +43,19 @@
           </div>
           <div class="l_l_r">
             <div class="top_tt">
-              <div class="top top_l">
-                <img src="../../assets/BLOG/content/news3.jpg" alt="">
+              <div class="top top_l" >
+                <img :src="blog_sixs[2].blog_image" alt="" v-if="blog_sixs!=null">
               </div>
-              <div class="detail-l">
-                <p class="title">Title<span class="xian xian-l"></span>
-                  <i class="paly_ss"><span class="fa fa-play"></span>
+              <div class="detail-l"  v-if="blog_sixs!=null">
+                <p class="title">{{blog_sixs[2].blog_cate.cate_name}}<span class="xian xian-l"></span>
+                  <i class="paly_ss" @click="paly_open"  v-if="blog_sixs[2].blog_video_url" :data-blog_video_url="blog[2].blog_video_url"><span
+                    class="fa fa-play"></span>
                   </i></p>
-                <p class="title_detail">The dollar has broken all records of positive change
-                  in the world and in the galaxy</p>
+                <p class="title_detail">{{blog_sixs[2].blog_name}}</p>
 
                 <div class="ddd-bot">
-                  <div class="ddd-l">Today 15:40</div>
-                  <div class="ddd-r"><span class="fa fa-eye"></span>10k</div>
+                  <div class="ddd-l">{{blog_sixs[2].blog_date|dates}}</div>
+                  <div class="ddd-r"><span class="fa fa-eye"></span>{{blog_sixs[2].blog_readnum}}</div>
                 </div>
 
               </div>
@@ -122,7 +117,6 @@
     },methods:{
       paly_open(blog_video_url){
           this.video_id = blog_video_url.explicitOriginalTarget.attributes[1].nodeValue;
-          console.log(this.video_id);
             if(this.video_id){
               this.$router.push({
                 path:'/bv/',
@@ -212,6 +206,9 @@
     font-size: 14px;
 
   }
+  .xian-l-l{
+    top: 12%!important;
+  }
 
   .lll {
     width: 100%;
@@ -273,7 +270,8 @@
 
   .ddd_de {
     margin-top: 20px;
-
+    height: 80px;
+    overflow: hidden;
   }
 
   .paly_ss .fa-play {

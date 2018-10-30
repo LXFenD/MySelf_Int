@@ -23,7 +23,7 @@ export default {
 <style>
 
 body{font-size: 15px;font-family: "Helvetica Neue",  Helvetica, Arial, sans-serif;line-height:1.25;
-background: rgba(0,0,0,.05);
+background: #eee!important;
 }
 *{margin: 0; padding: 0; border: 0;text-decoration:none ;  list-style: none;color: #666;hyphens: auto;
 overflow-wrap: break-word;}

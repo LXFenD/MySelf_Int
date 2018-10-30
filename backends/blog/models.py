@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 # Create your models here.
 class Category(models.Model):
@@ -12,6 +14,20 @@ class Category(models.Model):
         db_table = 'category'
         ordering = ['-cate_date']
 
+
+# class Tag(models.Model):
+#     create_time =
+
+
+class Tags_Time(models.Model):
+
+    tag_time = models.CharField(max_length=100,default="{}年{}月".format(timezone.now().year, timezone.now().month))
+    tag_date = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        db_table = 'tags'
+        ordering = ['-tag_time']
+
+
 class Blog(models.Model):
     """
     博客表
@@ -23,8 +39,10 @@ class Blog(models.Model):
     blog_readnum = models.IntegerField(default=0)
     blog_zan = models.IntegerField(default=0)
     blog_image = models.CharField(max_length=500)
-    blog_cate = models.ForeignKey('Category',on_delete=models.SET_NULL,null=True)
-    blog_video_url = models.CharField(max_length=888,default="")
+    blog_cate = models.ForeignKey('Category', on_delete=models.SET_NULL, null=True)
+    blog_video_url = models.CharField(max_length=888, default="")
+    blog_tage_time = models.ForeignKey('Tags_Time', on_delete=models.SET_NULL, null=True)
+
     class Meta:
         db_table = 'blog'
         ordering = ['-blog_date']

@@ -9,6 +9,7 @@
     <BG_Pbl></BG_Pbl>
     <BG_Footer></BG_Footer>
     <MA_Solider></MA_Solider>
+    <BG_Cate></BG_Cate>
   </div>
 
 </template>
@@ -21,11 +22,25 @@
   import BG_Detail from './blog/BG_Detail'
   import BG_Pbl from './blog/BG_Pbl'
   import BG_Footer from './blog/BG_Footer'
+  import BG_Cate from './blog/BG_Cate'
   import MA_TOP from './main/MA_NAV'
   import MA_Solider from './main/MA_Solider'
+  import MA_BLOG from './main/MA_BLOG'
+
     export default {
         name: "Home",
-        components:{BG_nav,BG_Nav_L,BG_Banner,BG_Content,BG_Detail,BG_Pbl,BG_Footer,MA_TOP,MA_Solider},
+        components:{
+          BG_nav,
+          BG_Nav_L,
+          BG_Banner,
+          BG_Content,
+          BG_Detail,
+          BG_Pbl,
+          BG_Footer,
+          MA_TOP,
+          MA_Solider,
+          MA_BLOG,
+          BG_Cate},
     }
 </script>
 

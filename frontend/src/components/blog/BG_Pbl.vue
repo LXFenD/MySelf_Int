@@ -4,11 +4,10 @@
         <div class="bg-top-p">
           <p class="p-title"> <span class="fa fa-book"></span><span class="xian xian-l"></span>全部文章</p>
           <ul>
-            <li>全部</li>
-            <li>新闻</li>
-            <li>前段</li>
-            <li>后端</li>
-            <li>语言</li>
+            <li @click="get_blogs(0)">全部</li>
+            <li v-for=" cate in cates" v-if="cates!=null" @click="get_blogs(cate.id)">
+              {{cate.cate_name}}
+            </li>
           </ul>
         </div>
         <div class="bg-p-m-p">
@@ -26,19 +25,32 @@
 
 <script>
   import {get_all_blog} from "../../request/api";
+  import {get_all_cate} from "../../request/api";
+  import {cate_id_bg} from "../../request/api";
 
   export default {
         name: "BG_Pbl",
       data(){
           return{
-            blogs:null
+            blogs:null,
+            cates:null,
           }
       },
       created(){
           get_all_blog().then(res=>{
             this.blogs = res.data.data
+          });
+          get_all_cate().then(res=>{
+            this.cates = res.data.data
           })
-      }
+      },
+    methods:{
+          get_blogs(id){
+            cate_id_bg({'cate_id':id}).then(res=>{
+              this.blogs = res.data.data
+            })
+          }
+    }
     }
 </script>
 

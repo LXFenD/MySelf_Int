@@ -2,68 +2,26 @@
   <div class="banner">
     <div class="content">
       <div class="con-l">
-        <div class="ban-ss">
-          <img src="../../assets/BLOG/content/slide1.jpg" alt="">
+
+        <div class="ban-ss" v-for="bs in blogs" v-if="blogs!=null">
+          <img :src="bs.blog_image" alt="">
           <div class="cont-t">
-            <p class="biaoqian">People<span class="xian"></span></p>
-            <h3 class="title">The Visions's Rainbow</h3>
-            <p class="detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </div>
-        <div class="ban-ss">
-          <img src="../../assets/BLOG/content/slide2.jpg" alt="">
-          <div class="cont-t">
-            <p class="biaoqian">People<span class="xian"></span></p>
-            <h3 class="title">The Visions's Rainbow</h3>
-            <p class="detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </div>
-        <div class="ban-ss">
-          <img src="../../assets/BLOG/content/slide1.jpg" alt="">
-          <div class="cont-t">
-            <p class="biaoqian">People<span class="xian"></span></p>
-            <h3 class="title">The Visions's Rainbow</h3>
-            <p class="detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.</p>
-          </div>
-        </div>
-        <div class="ban-ss">
-          <img src="../../assets/BLOG/content/slide2.jpg" alt="">
-          <div class="cont-t">
-            <p class="biaoqian">People<span class="xian"></span></p>
-            <h3 class="title">The Visions's Rainbow</h3>
-            <p class="detail">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p class="biaoqian">{{bs.blog_cate.cate_name}}<span class="xian"></span></p>
+            <h3 class="title">{{bs.blog_name}}</h3>
+            <p class="detail">{{bs.blog_detail}}.</p>
           </div>
         </div>
       </div>
       <div class="con-r">
         <div class="r-l">
-          <p class="r-l-title">sadhksaj<span class="xian"></span></p>
+          <p class="r-l-title">站长推荐<span class="xian"></span></p>
           <ul class="ul-zh">
-            <li><a href="javascript:void(0)" class="active">
+            <li v-for="blog in blogs" v-if="blogs!=null"><a href="javascript:void(0)" class="active">
              <span>today, 10:11</span><br>
-              Volkswagen hit by multiple probes in US Volkswagen hit
-              by multiple probes in US
+              {{blog.blog_detail}}
             </a>
             </li>
-            <li><a href="javascript:void(0)">
-             <span>today, 10:11</span><br>
-              Volkswagen hit by multiple probes in US Volkswagen hit
-              by multiple probes in US
-            </a></li>
-            <li><a href="javascript:void(0)">
-             <span>today, 10:11</span><br>
-              Volkswagen hit by multiple probes in US Volkswagen hit
-              by multiple probes in US
-            </a></li>
-            <li><a href="javascript:void(0)">
-             <span>today, 10:11</span><br>
-              Volkswagen hit by multiple probes in US Volkswagen hit
-              by multiple probes in US
-            </a></li>
+
           </ul>
         </div>
       </div>
@@ -78,10 +36,11 @@
 
 <script>
   import $ from "jquery"
+  import {zhan_remember} from "../../request/api";
 
   function sub() {
     var y = 100;
-    var indecx = 0;
+    var indecx =0;
     var left_ul = $('.con-l');
     var li_lists = $('.ban-ss');
     var list_length = li_lists.length;
@@ -97,9 +56,8 @@
         indecx++;
       }
       left_ul.animate({'top': '-' + indecx * y + '%'}, 1000);
+
     }, 6000);
-
-
     $('.ul-zh').children('li').click(function () {
          let index = $(this).index();
          indecx = index;
@@ -108,8 +66,18 @@
   }
   export default {
     name: "BG_Banner",
-    mounted(){
+  data(){
+      return{
+        blogs:null
+      }
+  },
+    updated(){
       sub()
+    },
+    created(){
+        zhan_remember().then(res=>{
+          this.blogs = res.data.data
+        })
     }
   }
 </script>
@@ -139,6 +107,7 @@
     background: #303d4a;
     position: absolute;
     float: left;
+    top: -100%;
   }
 
   .con-l .ban-ss:first-of-type {
@@ -233,6 +202,9 @@
     color: white;
     text-decoration: none;
     outline: none;
+    display: block;
+    line-height: 30px;
+    height: 60px;
   }
   .ul-zh > li >a>span{
     color: black;
