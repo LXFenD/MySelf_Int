@@ -22,31 +22,34 @@
     </div>
     <div class="img-url">
       <span>博客视频(可不上传)：</span>
-      <div class="detail-right-top">
-        <input type="text" placeholder="请输入视频标题" ref="vid_title">
+      <div class="detail-right-top jianjie">
+        <input type="text" placeholder="设置视频标题(必填)" ref="vid_title">
       </div>
       <div class="detail-right-top jianjie">
-        <input type="text" placeholder="请输入视频名称" ref="vid_name">
+        <input type="text" placeholder="设置视频名称(必填)" ref="vid_name">
       </div>
       <div class="detail-right-top jianjie">
-        <input type="text" placeholder="请输入视频描述" ref="vid_detail">
+        <input type="text" placeholder="设置分类(必填)" value="298198406" ref="vid_fenlei">
       </div>
       <div class="detail-right-top jianjie">
-        <input type="text" placeholder="请输入标签使用逗号分割" ref="vid_tags">
+        <input type="text" placeholder="请输入视频描述(选填)" ref="vid_detail">
       </div>
       <div class="detail-right-top jianjie">
-        <input type="text" placeholder="设置视频封面" ref="vid_coverurl">
+        <input type="text" placeholder="请输入标签使用逗号分割(选填)" ref="vid_tags">
       </div>
       <div class="detail-right-top jianjie">
-        <input type="text" placeholder="设置视频封面" ref="vid_coverurl">
+        <input type="text" placeholder="设置视频封面(选填)" ref="vid_coverurl">
+      </div>
+      <div class="jianjie" style="text-align: right">
+        <button class="btn btn-default" @click="save_vid">设置视频信息</button>
       </div>
       <div class="jianjie">
-        <input type="file" placeholder="" ref="vid_file" @change="load_vid"/>
+        <input type="file" placeholder="" ref="vid_file" @change="load_vid" value="开始选择上传"/>
       </div>
 
       <div class="progress jianjie">
         <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
-          <span class="sr-only"></span>
+
         </div>
       </div>
     </div>
@@ -110,9 +113,6 @@
       get_all_cate().then(res => {
         this.cates = res.data.data;
       });
-      create_upload_video().then(res => {
-        this.vid = res.data.data;
-      })
 
     },
     mounted() {
@@ -122,6 +122,31 @@
       this.editor.create();
     }
     , methods: {
+      //设置视频信息
+      save_vid() {
+        let vid_title = this.$refs.vid_title.value;
+        let vid_name = this.$refs.vid_name.value;
+        let vid_detail = this.$refs.vid_detail.value;
+        let vid_tags = this.$refs.vid_tags.value;
+        let vid_fenlei = this.$refs.vid_fenlei.value;
+        let vid_coverurl = this.$refs.vid_coverurl.value;
+        create_upload_video({
+          'vid_title': vid_title,
+          'vid_detail': vid_detail,
+          'vid_tags': vid_tags,
+          'vid_coverurl': vid_coverurl,
+          'vid_name': vid_name,
+          'vid_fenlei': vid_fenlei,
+        }).then(res => {
+          if (res.data.code == 200) {
+            swal("太棒了", "视频信息设置成功，可以上传视频了", 'success')
+            this.vid = res.data.data;
+          } else {
+            swal("失败了", res.data.message, 'faile')
+          }
+        })
+      },
+      //上传视频
       load_vid: function () {
         // 获取数据  post请求发送
         //
@@ -156,8 +181,8 @@
           'onUploadProgress': function (uploadInfo, totalSize, loadedPercent) {
             console.log("onUploadProgress:file:" + uploadInfo.file.name + ", fileSize:" + totalSize + ", percent:" + Math.ceil(loadedPercent * 100) + "%");
 
-            $('.progress-bar').css({'width': Math.ceil(loadedPercent * 100) + "%"})
-            $('.sr-only').text(Math.ceil(loadedPercent * 100) + "%")
+            $('.progress-bar').css({'width': Math.ceil(loadedPercent * 100) + "%"});
+            $('.progress-bar').text(Math.ceil(loadedPercent * 100) + "%")
           },
           // 上传凭证超时
           'onUploadTokenExpired': function (uploadInfo) {
@@ -179,6 +204,7 @@
         uploader.startUpload();
       }
       ,
+      //保存博客
       save_content: function () {
         let parms = {
           'blog_title': this.$refs.blog_title.value,
@@ -187,7 +213,6 @@
           'blog_text_content': this.editor.txt.text(),
           'blog_category_id': this.$refs.blog_category_id.value,
           'blog_img': this.img_url,
-
         };
         post_blog(parms).then(data => {
           swal("太棒了", "你的博客保存了", 'success')
@@ -245,6 +270,7 @@
         })
       }
       ,
+      //上传图片到阿里云存储
       load_img_aliyun() {
         var self = this;
         let files = this.$refs.blog_img.files;

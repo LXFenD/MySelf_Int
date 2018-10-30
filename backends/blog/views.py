@@ -14,8 +14,8 @@ import json
 import oss2
 from django.utils import timezone
 from django.db.models import Avg, Count
-from aliyunsdkvod.request.v20170321 import GetVideoPlayAuthRequest,\
-    GetPlayInfoRequest, GetVideoListRequest,CreateUploadVideoRequest,RefreshUploadVideoRequest
+from aliyunsdkvod.request.v20170321 import GetVideoPlayAuthRequest, \
+    GetPlayInfoRequest, GetVideoListRequest, CreateUploadVideoRequest, RefreshUploadVideoRequest
 from aliyunsdkcore import client
 
 clt = client.AcsClient(settings.ALIYUN_PLAY_ACCESS_KEY_ID, settings.ALIYUN_PLAY_ACCESS_KEY_SECRET, 'cn-shanghai')
@@ -110,7 +110,6 @@ def insert_blog(request):
     blog_content: 文章内容
     blog_category_id: 文章分类
     blog_user_uuid: 文章作者
-
     存储博客
     :param request:
     :return: json
@@ -275,17 +274,18 @@ def get_month(request):
     :param request:
     :return:
     """
-    blog_times = Blog.objects.datetimes('blog_date','month',"DESC")
+    blog_times = Blog.objects.datetimes('blog_date', 'month', "DESC")
     apps = []
     times_nums = []
     for i in blog_times:
-        blog = Blog.objects.filter(blog_date__year=i.year,blog_date__month=i.month).count()
+        blog = Blog.objects.filter(blog_date__year=i.year, blog_date__month=i.month).count()
         apps.append(i.year)
         apps.append(i.month)
         apps.append(blog)
         times_nums.append(apps)
         apps = []
     return ok(data=times_nums)
+
 
 @require_GET
 def sort_time_re(request):
@@ -294,9 +294,9 @@ def sort_time_re(request):
     :param request:
     :return:
     """
-    blogs = Blog.objects.select_related('blog_cate').order_by('-blog_date','-blog_readnum')[0:6]
-    data = BlogSerializer(blogs,many=True).data
-    return  ok(data=data)
+    blogs = Blog.objects.select_related('blog_cate').order_by('-blog_date', '-blog_readnum')[0:6]
+    data = BlogSerializer(blogs, many=True).data
+    return ok(data=data)
 
 
 @require_GET
@@ -327,6 +327,8 @@ def lv_rem(request):
 def get_cate_id_blog(request):
     """
     根据分类id获取博客文章
+    如果cate_id ==0:
+        就是获取所有的文章
     :param request:
     :return:
     """
@@ -336,8 +338,8 @@ def get_cate_id_blog(request):
             blogs = Blog.objects.all()
         else:
             blogs = Blog.objects.filter(blog_cate__id=int(cate_id))
-        data = BlogSerializer(blogs,many=True).data
-        return  ok(data=data)
+        data = BlogSerializer(blogs, many=True).data
+        return ok(data=data)
     else:
         return param_error()
 
@@ -345,20 +347,37 @@ def get_cate_id_blog(request):
 @require_GET
 def create_upload_video(request):
     """
-    上传视频  获取用户的上传凭证和视频的上传信息
+    上传视频
+    创建上传任务
+    获取用户的上传凭证和视频的上传信息
     :param request:
     :return:
     """
-    request = CreateUploadVideoRequest.CreateUploadVideoRequest()
-    request.set_Title('我很好3')          # 视频标题(必填参数)
-    request.set_FileName('z-03.mp4')   # 视频源文件名称，必须包含扩展名(必填参数)
-    request.set_Description('暂无描述')    # 视频描述信息(可选)
-    # request.set_CoverURL('http://img.alicdn.com/tps/TB1qnJ1PVXXXXXCXXXXXXXXXXXX-700-700.png')  # 自定义视频封面(可选)，不设置会默认取第一张截图作为封面
-    # request.set_Tags('标签1,标签2')    # 视频标签，多个用逗号分隔(可选)
-    request.set_CateId(0)       # 视频分类(可选，可在点播控制台·全局设置·分类管理里查看分类ID：https://vod.console.aliyun.com/#/vod/settings/category)
-    request.set_accept_format('JSON')
-    response = json.loads(clt.do_action(request))
-    return ok(data=response)
+    vid_name = request.GET.get('vid_name')
+    vid_title = request.GET.get('vid_title')
+    vid_fenlei = request.GET.get('vid_fenlei')
+    if vid_name and vid_title and vid_fenlei:
+        vid_detail = request.GET.get('vid_detail')
+        vid_tags = request.GET.get('vid_tags')
+        vid_coverurl = request.GET.get('vid_coverurl')
+
+        requests = CreateUploadVideoRequest.CreateUploadVideoRequest()
+        requests.set_Title(vid_title)  # 视频标题(必填参数)
+        requests.set_FileName(vid_name)  # 视频源文件名称，必须包含扩展名(必填参数)
+        if vid_detail:
+            requests.set_Description(vid_detail)  # 视频描述信息(可选)
+        if vid_coverurl:
+            requests.set_CoverURL(vid_coverurl)  # 自定义视频封面(可选)，不设置会默认取第一张截图作为封面
+        if vid_tags:
+            requests.set_Tags(vid_tags)  # 视频标签，多个用逗号分隔(可选)
+        requests.set_CateId(int(vid_fenlei))  # 视频分类(可选，可在点播控制台·全局设置·分类管理里查看分类ID：
+                                # https://vod.console.aliyun.com/#/vod/settings/category)
+        requests.set_accept_format('JSON')
+        response = json.loads(clt.do_action(requests))
+        print(response)
+        return ok(data=response)
+    else:
+        return param_error()
 
 
 @require_GET
@@ -368,3 +387,6 @@ def refresh_upload_token(request):
     request.set_VideoId("d6e2fb63b5e040c4a9ed04830325dff9")
     response = json.loads(clt.do_action(request))
     return ok(data=response)
+
+
+

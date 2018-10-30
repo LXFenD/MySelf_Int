@@ -157,6 +157,10 @@
 </script>
 
 <style scoped>
+  .fa-play{
+    padding: 10px 0;
+    padding-left: 4px;
+  }
   .prism-player {
     margin: 0 auto;
   }
@@ -354,7 +358,7 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
-    background: #fff url("../../assets/play-1.png");
+    background: #000;
     display: block;
     position: absolute;
     /*background: white;*/
