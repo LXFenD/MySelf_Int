@@ -1,13 +1,16 @@
 <template>
     <div class="video">
       <MA_TOP></MA_TOP>
-          <div  class="prism-player" id="J_prismPlayer"></div>
+      <div class="paly_video">
+        <div  class="prism-player" id="J_prismPlayer"></div>
+      </div>
+
       <BG_Footer></BG_Footer>
     </div>
 </template>
 
 <script>
-   import MA_TOP from './main/MA_NAV'
+    import MA_TOP from './main/MA_NAV'
     import BG_Footer from './blog/BG_Footer'
     import {get_play_info} from "../request/api";
     export default {
@@ -40,12 +43,15 @@
 <style scoped>
     .video{
       width: 100%;
-
     }
   .prism-player{
       width: 75%;
     height: 600px;
     margin: 30px auto;
     margin-top: 70px;
+  }
+  .paly_video{
+    width: 80%;
+    margin: 0 auto;
   }
 </style>

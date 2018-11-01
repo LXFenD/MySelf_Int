@@ -11,7 +11,7 @@
           </ul>
         </div>
         <div class="bg-p-m-p">
-          <div class="pic" v-for="blog in blogs" v-if="blogs!=null">
+          <div class="pic" v-for="blog in blogs" v-if="blogs!=null" @click="link_sub(blog.id,blog.blog_video_url)">
             <img :src="blog.blog_image" alt="">
             <p>
               {{blog.blog_detail}}
@@ -49,7 +49,28 @@
             cate_id_bg({'cate_id':id}).then(res=>{
               this.blogs = res.data.data
             })
-          }
+          },
+      link_sub(blog_id,vid_url){
+        if(vid_url){
+          this.$router.push({
+              path:'/bg_detail/',
+              name:'BG_Detail',
+              params:{
+                'blog_id':blog_id,
+                'vid_url':vid_url
+              }
+            })
+        }else {
+         this.$router.push({
+              path:'/bg_detail/',
+              name:'BG_Detail',
+              params:{
+                'blog_id':blog_id,
+              }
+            })
+        }
+
+      }
     }
     }
 </script>

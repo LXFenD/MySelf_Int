@@ -41,7 +41,11 @@
         <input type="text" placeholder="设置视频封面(选填)" ref="vid_coverurl">
       </div>
       <div class="jianjie" style="text-align: right">
-        <button class="btn btn-default" @click="save_vid">设置视频信息</button>
+        <button class="btn btn-default" @click="save_vid">创建上传视频任务</button>
+      </div>
+      <div class="detail-right-top jianjie">
+        <span style="padding: 10px">视频ID(创建上传任务后获取)：</span>
+        <input type="text" placeholder="设置视频封面(选填)" :value="vid_id" ref="vid_id">
       </div>
       <div class="jianjie">
         <input type="file" placeholder="" ref="vid_file" @change="load_vid" value="开始选择上传"/>
@@ -96,7 +100,6 @@
   import {default as swal} from 'sweetalert2'
   import {load_img_aliyun} from "../../../request/api";
   import {create_upload_video} from "../../../request/api";
-  // var qiniu =  require('qiniu-js');
   export default {
     name: "blog-write-left"
     , data() {
@@ -104,7 +107,8 @@
         cates: '',
         editor: null,
         img_url: '',
-        vid: null
+        vid: null,
+        vid_id:'暂无id值'
       }
     },
 
@@ -141,6 +145,7 @@
           if (res.data.code == 200) {
             swal("太棒了", "视频信息设置成功，可以上传视频了", 'success')
             this.vid = res.data.data;
+            this.vid_id = this.vid.VideoId
           } else {
             swal("失败了", res.data.message, 'faile')
           }
@@ -179,7 +184,7 @@
           },
           // 文件上传进度，单位：字节
           'onUploadProgress': function (uploadInfo, totalSize, loadedPercent) {
-            console.log("onUploadProgress:file:" + uploadInfo.file.name + ", fileSize:" + totalSize + ", percent:" + Math.ceil(loadedPercent * 100) + "%");
+            // console.log("onUploadProgress:file:" + uploadInfo.file.name + ", fileSize:" + totalSize + ", percent:" + Math.ceil(loadedPercent * 100) + "%");
 
             $('.progress-bar').css({'width': Math.ceil(loadedPercent * 100) + "%"});
             $('.progress-bar').text(Math.ceil(loadedPercent * 100) + "%")
@@ -196,6 +201,8 @@
           'onUploadEnd': function (uploadInfo) {
             console.log("onUploadEnd: uploaded all the files");
             $('.progress').css('display', "none");
+            $('.progress-bar').css({'width': "0%"});
+            $('.progress-bar').text("0%");
             swal("太棒了", "你的视频上传成功！！", 'success')
           }
         });
@@ -213,6 +220,7 @@
           'blog_text_content': this.editor.txt.text(),
           'blog_category_id': this.$refs.blog_category_id.value,
           'blog_img': this.img_url,
+          'vid_id': this.vid_id,
         };
         post_blog(parms).then(data => {
           swal("太棒了", "你的博客保存了", 'success')

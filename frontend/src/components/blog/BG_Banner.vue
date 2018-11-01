@@ -2,7 +2,6 @@
   <div class="banner">
     <div class="content">
       <div class="con-l">
-
         <div class="ban-ss" v-for="bs in blogs" v-if="blogs!=null">
           <img :src="bs.blog_image" alt="">
           <div class="cont-t">
@@ -167,8 +166,10 @@
     float: right;
     width: 35%;
     height: 100%;
-    background: darkolivegreen;
     z-index: 3;
+    border-right: 1px solid #ff6357;
+    border-left: 1px solid #ff6357;
+    background: rgba(0,0,0,.2);
   }
 
   .r-l {

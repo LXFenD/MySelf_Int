@@ -7,14 +7,14 @@
             <img :src="blog_sixs[0].blog_image" alt="" v-if="blog_sixs!=null">
           </div>
           <div class="detail-l" v-if="blog_sixs!=null">
-            <p class="title">{{blog_sixs[0].blog_cate.cate_name}}<span class="xian xian-l-l"></span></p>
-            <a href="">{{blog_sixs[0].blog_name}}</a>
+            <p class="title" v-if="blog_sixs!=null">{{blog_sixs[0].blog_cate.cate_name}}<span class="xian xian-l-l"></span></p>
+            <a href="" v-if="blog_sixs!=null">{{blog_sixs[0].blog_name}}</a>
 
-            <p class="ddd_de">{{blog_sixs[0].blog_detail}}</p>
+            <p class="ddd_de" v-if="blog_sixs!=null">{{blog_sixs[0].blog_detail}}</p>
 
             <div class="ddd-bot">
-              <div class="ddd-l">{{blog_sixs[0].blog_date|dates}}</div>
-              <div class="ddd-r"><span class="fa fa-eye"></span>{{blog_sixs[0].blog_readnum}}</div>
+              <div class="ddd-l" v-if="blog_sixs!=null">{{blog_sixs[0].blog_date|dates}}</div>
+              <div class="ddd-r" v-if="blog_sixs!=null"><span class="fa fa-eye"></span>{{blog_sixs[0].blog_readnum}}</div>
             </div>
 
           </div>
@@ -26,15 +26,15 @@
                 <img :src="blog_sixs[1].blog_image" alt="" v-if="blog_sixs!=null">
               </div>
               <div class="detail-l">
-                <p class="title">{{blog_sixs[1].blog_cate.cate_name}}<span class="xian xian-l"></span>
-                  <i class="paly_ss" @click="paly_open"  v-if="blog_sixs[1].blog_video_url" :data-blog_video_url="blog[1].blog_video_url"><span
+                <p class="title" v-if="blog_sixs!=null">{{blog_sixs[1].blog_cate.cate_name}}<span class="xian xian-l"></span>
+                  <i class="paly_ss" @click="paly_open(blog_sixs[1].blog_video_url)"  v-if="blog_sixs[1].blog_video_url" :data-blog_video_url="blog_sixs[1].blog_video_url"><span
                     class="fa fa-play"></span>
                   </i></p>
-                <p class="title_detail">{{blog_sixs[1].blog_name}}</p>
+                <p class="title_detail" v-if="blog_sixs!=null">{{blog_sixs[1].blog_name}}</p>
 
                 <div class="ddd-bot">
-                  <div class="ddd-l">{{blog_sixs[1].blog_date|dates}}</div>
-                  <div class="ddd-r"><span class="fa fa-eye"></span>{{blog_sixs[1].blog_readnum}}</div>
+                  <div class="ddd-l" v-if="blog_sixs!=null">{{blog_sixs[1].blog_date|dates}}</div>
+                  <div class="ddd-r" v-if="blog_sixs!=null"><span class="fa fa-eye"></span>{{blog_sixs[1].blog_readnum}}</div>
                 </div>
 
               </div>
@@ -47,15 +47,15 @@
                 <img :src="blog_sixs[2].blog_image" alt="" v-if="blog_sixs!=null">
               </div>
               <div class="detail-l"  v-if="blog_sixs!=null">
-                <p class="title">{{blog_sixs[2].blog_cate.cate_name}}<span class="xian xian-l"></span>
-                  <i class="paly_ss" @click="paly_open"  v-if="blog_sixs[2].blog_video_url" :data-blog_video_url="blog[2].blog_video_url"><span
-                    class="fa fa-play"></span>
+                <p class="title" v-if="blog_sixs!=null">{{blog_sixs[2].blog_cate.cate_name}}<span class="xian xian-l"></span>
+                  <i class="paly_ss" @click="paly_open(blog_sixs[2].blog_video_url)"  v-if="blog_sixs[2].blog_video_url" :data-blog_video_url="blog_sixs[2].blog_video_url"><span
+                    class="fa fa-play" v-if="blog_sixs!=null"></span>
                   </i></p>
-                <p class="title_detail">{{blog_sixs[2].blog_name}}</p>
+                <p class="title_detail" v-if="blog_sixs!=null">{{blog_sixs[2].blog_name}}</p>
 
                 <div class="ddd-bot">
-                  <div class="ddd-l">{{blog_sixs[2].blog_date|dates}}</div>
-                  <div class="ddd-r"><span class="fa fa-eye"></span>{{blog_sixs[2].blog_readnum}}</div>
+                  <div class="ddd-l" v-if="blog_sixs!=null">{{blog_sixs[2].blog_date|dates}}</div>
+                  <div class="ddd-r" v-if="blog_sixs!=null"><span class="fa fa-eye"></span>{{blog_sixs[2].blog_readnum}}</div>
                 </div>
 
               </div>
@@ -73,7 +73,7 @@
               </div>
               <div class="detail-l">
                 <p class="title">{{blog.blog_name}}<span class="xian xian-l"></span>
-                  <i class="paly_ss" @click="paly_open"  v-if="blog.blog_video_url" :data-blog_video_url="blog.blog_video_url"><span
+                  <i class="paly_ss" @click="paly_open(blog.blog_video_url)"  ref="video_url" v-if="blog.blog_video_url" :data-blog_video_url="blog.blog_video_url"><span
                     class="fa fa-play"></span>
                   </i></p>
                 <p class="title_detail">{{blog.blog_detail}}</p>
@@ -116,12 +116,12 @@
       })
     },methods:{
       paly_open(blog_video_url){
-          this.video_id = blog_video_url.explicitOriginalTarget.attributes[1].nodeValue;
-            if(this.video_id){
+
+            if(blog_video_url){
               this.$router.push({
                 path:'/bv/',
                 name:'blog_video',
-                params:{'video_id':this.video_id}
+                params:{'video_id':blog_video_url}
               })
             }
       }

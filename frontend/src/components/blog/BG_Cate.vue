@@ -37,7 +37,7 @@
             </ul>
             <h4><span class="glyphicon glyphicon-triangle-right"></span>时间热度文章</h4>
             <ul class="cate-re">
-              <li v-for="sort in time_sorts">
+              <li v-for="sort in time_sorts" @click="link_sub(sort.id,sort.blog_video_url)">
                 <img :src="sort.blog_image" alt="">
                 <div class="cate-po">
                   <p>分类：<i><span class="categoty-fen">{{sort.blog_cate.cate_name}}</span></i></p>
@@ -64,7 +64,7 @@
             </ul>
             <h4><span class="glyphicon glyphicon-triangle-right"></span>时间热度文章</h4>
             <ul class="cate-re">
-              <li v-for="sort in time_sorts">
+              <li v-for="sort in time_sorts" @click="link_sub(sort.id,sort.blog_video_url)">
                 <img :src="sort.blog_image" alt="">
                 <div class="cate-po">
                   <p>分类：<i><span class="categoty-fen">{{sort.blog_cate.cate_name}}</span></i></p>
@@ -85,7 +85,7 @@
           <div class="cont-top">
             <h4><span class="glyphicon glyphicon-triangle-right"></span>观看最多</h4>
             <ul class="cate-fen">
-              <li v-for="re in re_rems" v-if="re_rems!=null">
+              <li v-for="re in re_rems" v-if="re_rems!=null" >
 
                 <span class="blog_name">{{re.blog_name}}</span>
                 <span class="glyphicon glyphicon-eye-open">({{re.blog_zan}})</span>
@@ -94,7 +94,7 @@
             </ul>
             <h4><span class="glyphicon glyphicon-triangle-right"></span>时间热度文章</h4>
             <ul class="cate-re">
-              <li v-for="re in re_rems" v-if="re_rems!=null">
+              <li v-for="re in re_rems" v-if="re_rems!=null" @click="link_sub(re.id,re.blog_video_url)">
                 <img :src="re.blog_image" alt="">
                 <div class="cate-po">
                   <p>分类：<i><span class="categoty-fen">{{re.blog_cate.cate_name}}</span></i></p>
@@ -115,14 +115,14 @@
           <div class="cont-top">
             <h4><span class="glyphicon glyphicon-triangle-right"></span>喜欢最多</h4>
             <ul class="cate-fen">
-              <li v-for="lv in lv_rems" v-if="lv_rems!=null">
+              <li v-for="lv in lv_rems" v-if="lv_rems!=null" >
                 <span class="blog_name">{{lv.blog_name}}</span>
                 <span class="glyphicon glyphicon-thumbs-up">({{lv.blog_zan}})</span>
               </li>
             </ul>
             <h4><span class="glyphicon glyphicon-triangle-right"></span>排行</h4>
             <ul class="cate-re">
-              <li  v-for="lv in lv_rems" v-if="lv_rems!=null">
+              <li  v-for="lv in lv_rems" v-if="lv_rems!=null" @click="link_sub(lv.id,lv.blog_video_url)">
                 <img :src="lv.blog_image" alt="">
                 <div class="cate-po">
                   <p>分类：<i><span class="categoty-fen">{{lv.blog_cate.cate_name}}</span></i></p>
@@ -191,7 +191,31 @@
       $('.glyphicon-remove').click(function () {
         $('.bg-cate-conts').hide();
       })
-    }
+
+    },
+     methods:{
+      link_sub(blog_id,vid_url){
+        if(vid_url){
+          this.$router.push({
+              path:'/bg_detail/',
+              name:'BG_Detail',
+              params:{
+                'blog_id':blog_id,
+                'vid_url':vid_url
+              }
+            })
+        }else {
+         this.$router.push({
+              path:'/bg_detail/',
+              name:'BG_Detail',
+              params:{
+                'blog_id':blog_id,
+              }
+            })
+        }
+
+      }
+     }
   }
 </script>
 

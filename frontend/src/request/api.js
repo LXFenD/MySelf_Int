@@ -39,4 +39,7 @@ export  const re_rem = parma => axios.get('/blog/re_rem/',parma);
 export  const lv_rem = parma => axios.get('/blog/lv_rem/',parma);
 
 export  const cate_id_bg = parma => axios.get('/blog/cate_id_bg/',{params:parma});
+
 export  const create_upload_video = parma => axios.get('/blog/create_upload_video/',{params:parma});
+
+export  const get_id_bg = parma => axios.get('/blog/get_id_bg/',{params:parma});

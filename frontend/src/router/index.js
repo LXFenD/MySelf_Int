@@ -5,6 +5,7 @@ import BG_Home from '../components/BG_Home'
 import MA_Home from '../components/MA_Home'
 import Blog_Write from '../components/Blog-Write'
 import blog_video from '../components/blog_video'
+import BG_Detail from '../components/BG_Detail'
 
 Vue.use(Router);
 
@@ -38,6 +39,10 @@ export default new Router({
       path: '/bv/',
       name: 'blog_video',
       component: blog_video
+    }, {
+      path: '/bg_detail/',
+      name: 'BG_Detail',
+      component: BG_Detail
     },
   ],
   mode:'history'

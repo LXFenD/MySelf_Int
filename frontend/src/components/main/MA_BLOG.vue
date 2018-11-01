@@ -5,7 +5,7 @@
             <p class="blog-title">最新文章 <span class="xia"></span></p>
             <div class="flexs ">
               <ul >
-                <li v-for="blog in blogs" v-if="blogs!=null">
+                <li v-for="blog in blogs" v-if="blogs!=null" @click="link_sub(blog.id,blog.blog_video_url)">
                   <div class="u-l-d">
                     <img :src="blog.blog_image" alt="">
                     <div class="boot">
@@ -38,6 +38,29 @@
        this.blogs=res.data.data
      })
     },
+  methods:{
+       link_sub(blog_id,vid_url){
+        if(vid_url){
+          this.$router.push({
+              path:'/bg_detail/',
+              name:'BG_Detail',
+              params:{
+                'blog_id':blog_id,
+                'vid_url':vid_url
+              }
+            })
+        }else {
+         this.$router.push({
+              path:'/bg_detail/',
+              name:'BG_Detail',
+              params:{
+                'blog_id':blog_id,
+              }
+            })
+        }
+
+      }
+  },
       mounted(){
            $(window).scroll(function () {
         let sc = $(this).scrollTop();

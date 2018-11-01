@@ -3,6 +3,7 @@ from . import views
 urlpatterns = [
 
     path('all/',views.get_all), #获取所有博客
+    path('get_id_bg/',views.get_id_bg), #根据id获取博客
     path('cate/all/',views.get_cate_all), #获取所有分类
     path('load/img/',views.upload_load_img), #上传本地图片
     path('qiniu/img/',views.upload_qiniu_img), #上传到七牛云图片

@@ -3,7 +3,7 @@
     <div class="bg-d">
       <div class="bg-d-l">
         <div class="top" v-if="blogs!=null">
-          <div class="top-l" >
+          <div class="top-l" @click="link_sub(blogs[3].id,blogs[2].blog_video_url)" >
             <img :src="blogs[3].blog_image" alt="">
             <div class="top-detail">
               <p class="title">{{blogs[3].blog_name}}<span class="xian xian-l"></span></p>
@@ -12,7 +12,7 @@
               </p>
             </div>
           </div>
-          <div class="top-r ">
+          <div class="top-r " @click="link_sub(blogs[4].id,blogs[2].blog_video_url)">
             <img :src="blogs[4].blog_image" alt="">
             <div class="top-detail">
               <p class="title">{{blogs[4].blog_name}}<span class="xian xian-l"></span></p>
@@ -23,7 +23,7 @@
           </div>
         </div>
         <div class="top_l " v-if="blogs!=null">
-          <div class="top-l-l ">
+          <div class="top-l-l " @click="link_sub(blogs[1].id,blogs[2].blog_video_url)">
             <img :src="blogs[1].blog_image" alt="">
             <div class="top-detail">
               <p class="title">{{blogs[1].blog_name}}<span class="xian xian-l"></span></p>
@@ -32,7 +32,7 @@
               </p>
             </div>
           </div>
-          <div class="top-l-r ">
+          <div class="top-l-r " @click="link_sub(blogs[2].id,blogs[2].blog_video_url)">
             <img :src="blogs[2].blog_image" alt="">
             <div class="top-detail">
               <p class="title">{{blogs[2].blog_name}}<span class="xian xian-l"></span></p>
@@ -42,7 +42,7 @@
             </div>
           </div>
         </div>
-        <div class="d_l" v-if="blogs!=null">
+        <div class="d_l" v-if="blogs!=null" @click="link_sub(blogs[5].id,blogs[5].blog_video_url)">
           <img :src="blogs[5].blog_image" alt="">
           <div class="top-detail">
             <p class="title">{{blogs[5].blog_name}}<span class="xian xian-l"></span></p>
@@ -62,7 +62,7 @@
             </p>
             <div class="dett">
               <p class="fass-times"><span class="fa fa-share"></span>{{b.blog_date|dates}}</p>
-              <p class="zhuan"><span class="fa fa-arrow-right"></span>转到</p>
+              <p class="zhuan" @click="link_sub(b.id,b.blog_video_url)"><span class="fa fa-arrow-right"></span>转到</p>
             </div>
 
           </li>
@@ -83,6 +83,28 @@
     data(){
       return{
         blogs:null
+      }
+    },methods:{
+      link_sub(blog_id,vid_url){
+        if(vid_url){
+          this.$router.push({
+              path:'/bg_detail/',
+              name:'BG_Detail',
+              params:{
+                'blog_id':blog_id,
+                'vid_url':vid_url
+              }
+            })
+        }else {
+         this.$router.push({
+              path:'/bg_detail/',
+              name:'BG_Detail',
+              params:{
+                'blog_id':blog_id,
+              }
+            })
+        }
+
       }
     }
     ,

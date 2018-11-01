@@ -10,7 +10,6 @@ from .serializer import BlogSerializer, CateSerializer, CateSerializer_Num, Tage
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_GET, require_POST, require_http_methods
 import json
-
 import oss2
 from django.utils import timezone
 from django.db.models import Avg, Count
@@ -121,12 +120,15 @@ def insert_blog(request):
             blog_content = request.POST.get('blog_content')
             blog_category_id = request.POST.get('blog_category_id')
             blog_img = request.POST.get('blog_img')
+            vid_id = request.POST.get('vid_id')
             blog_cate = Category.objects.get(pk=int(blog_category_id))
             blog = Blog.objects.create(blog_name=blog_title,
                                        blog_detail=blog_detail,
                                        blog_content=blog_content,
                                        blog_cate=blog_cate,
-                                       blog_image=blog_img)
+                                       blog_image=blog_img,
+                                       blog_video_url=vid_id
+                                       )
         except:
             return param_error()
         if blog:
@@ -360,7 +362,6 @@ def create_upload_video(request):
         vid_detail = request.GET.get('vid_detail')
         vid_tags = request.GET.get('vid_tags')
         vid_coverurl = request.GET.get('vid_coverurl')
-
         requests = CreateUploadVideoRequest.CreateUploadVideoRequest()
         requests.set_Title(vid_title)  # 视频标题(必填参数)
         requests.set_FileName(vid_name)  # 视频源文件名称，必须包含扩展名(必填参数)
@@ -371,10 +372,9 @@ def create_upload_video(request):
         if vid_tags:
             requests.set_Tags(vid_tags)  # 视频标签，多个用逗号分隔(可选)
         requests.set_CateId(int(vid_fenlei))  # 视频分类(可选，可在点播控制台·全局设置·分类管理里查看分类ID：
-                                # https://vod.console.aliyun.com/#/vod/settings/category)
+        # https://vod.console.aliyun.com/#/vod/settings/category)
         requests.set_accept_format('JSON')
         response = json.loads(clt.do_action(requests))
-        print(response)
         return ok(data=response)
     else:
         return param_error()
@@ -382,6 +382,11 @@ def create_upload_video(request):
 
 @require_GET
 def refresh_upload_token(request):
+    """
+    获取刷新凭证
+    :param request:
+    :return:
+    """
     request = RefreshUploadVideoRequest.RefreshUploadVideoRequest()
     request.set_accept_format('JSON')
     request.set_VideoId("d6e2fb63b5e040c4a9ed04830325dff9")
@@ -389,4 +394,20 @@ def refresh_upload_token(request):
     return ok(data=response)
 
 
-
+@require_GET
+def get_id_bg(request):
+    """
+    根据id获取视频
+    :param request:
+    :return:
+    """
+    blog_id = request.GET.get('blog_id')
+    if blog_id:
+        try:
+            blog = Blog.objects.get(id = int(blog_id))
+        except:
+            return param_error(message="数据不存在")
+        data = BlogSerializer(blog).data
+        return  ok(data=data)
+    else:
+        return param_error(message="参数不存在")
