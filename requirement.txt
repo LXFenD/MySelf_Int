@@ -104,7 +104,7 @@ ssh-import-id==5.7
 stevedore==1.29.0
 system-service==0.3
 systemd-python==234
-Twisted==18.7.0
+Twisted==22.1.0
 ubuntu-drivers-common==0.0.0
 ufw==0.35
 unattended-upgrades==0.1
